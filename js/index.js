@@ -16,6 +16,12 @@ var addStudent = function () {
   // clear form
   document.querySelector("#btnReset").click();
 };
+
+var deleteStudent = function (id) {
+  var index = findIndexById(id);
+  studentList.splice(index, 1);
+  storeData();
+  renderStudentList();
 };
 
 var renderStudentList = function () {
@@ -40,7 +46,10 @@ var renderStudentList = function () {
         <td>${studentList[i].chemistry}</td>
         <td>
           <button class="btn btn-primary btn-sm">Update</button>
-          <button class="btn btn-danger btn-sm">Delete</button>
+          <button 
+            class="btn btn-danger btn-sm" 
+            onclick="deleteStudent('${studentList[i].id}')"
+          >Delete</button>
         </td>
       </tr>
     `;
@@ -59,6 +68,16 @@ var getGender = function () {
   }
 
   return "";
+};
+
+var findIndexById = function (id) {
+  for (var i = 0; i < studentList.length; i++) {
+    if (studentList[i].id === id) {
+      return i;
+    }
+  }
+
+  return -1;
 };
 
 var storeData = function () {
