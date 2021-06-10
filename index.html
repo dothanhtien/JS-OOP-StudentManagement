@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Student Management</title>
+
+    <!-- GOOGLE FONT -->
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- BOOTSTRAP CSS -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x"
+      crossorigin="anonymous"
+    />
+
+    <!-- FONT AWESOME -->
+    <link
+      rel="stylesheet"
+      href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
+      integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p"
+      crossorigin="anonymous"
+    />
+
+    <style>
+      body {
+        font-family: "Roboto", sans-serif;
+      }
+      .form-control:focus,
+      .form-select:focus,
+      .form-check-input:focus {
+        border-color: #9c27b0 !important;
+        box-shadow: 0 0 0 0.25rem rgb(156 39 176 / 25%) !important;
+      }
+      .form-check-input:checked {
+        background-color: #9c27b0 !important;
+        border-color: #9c27b0 !important;
+      }
+      #btnAdd,
+      hr {
+        background-color: #9c27b0;
+      }
+      table {
+        border-color: #9c27b0 !important;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1 class="text-center my-5 fw-bold">
+        <i class="fas fa-user-graduate text-primary"></i> Student Management
+      </h1>
+      <form class="row">
+        <div class="col-8 mx-auto">
+          <div class="form-floating mb-3">
+            <input
+              type="text"
+              class="form-control"
+              id="txtId"
+              placeholder="Enter ID..."
+            />
+            <label for="txtId">Student ID</label>
+          </div>
+          <div class="form-floating mb-3">
+            <input
+              type="text"
+              class="form-control"
+              id="txtName"
+              placeholder="Enter name..."
+            />
+            <label for="txtName">Student Name</label>
+          </div>
+
+          <fieldset class="row mb-3">
+            <legend class="col-form-label col-sm-2 pt-0">Gender</legend>
+            <div class="col-sm-6 d-flex justify-content-evenly">
+              <div class="form-check">
+                <input
+                  class="form-check-input"
+                  type="radio"
+                  name="genderRadios"
+                  id="chkMale"
+                  value="male"
+                />
+                <label class="form-check-label" for="chkMale"> Male </label>
+              </div>
+              <div class="form-check">
+                <input
+                  class="form-check-input"
+                  type="radio"
+                  name="genderRadios"
+                  id="chkFemale"
+                  value="female"
+                />
+                <label class="form-check-label" for="chkFemale"> Female </label>
+              </div>
+            </div>
+          </fieldset>
+
+          <div class="row">
+            <div class="col-4">
+              <div class="form-floating mb-3">
+                <input
+                  type="text"
+                  class="form-control"
+                  id="txtMath"
+                  placeholder="Enter scrore..."
+                />
+                <label for="txtMath">Math score</label>
+              </div>
+            </div>
+            <div class="col-4">
+              <div class="form-floating mb-3">
+                <input
+                  type="text"
+                  class="form-control"
+                  id="txtPhysics"
+                  placeholder="Enter scrore..."
+                />
+                <label for="txtPhysics">Physics score</label>
+              </div>
+            </div>
+            <div class="col-4">
+              <div class="form-floating mb-3">
+                <input
+                  type="text"
+                  class="form-control"
+                  id="txtChemistry"
+                  placeholder="Enter scrore..."
+                />
+                <label for="txtChemistry">Chemistry score</label>
+              </div>
+            </div>
+          </div>
+          <div class="text-center">
+            <button id="btnAdd" type="button" class="btn text-white">
+              Add student
+            </button>
+          </div>
+        </div>
+      </form>
+      <hr class="my-5" />
+      <table class="table table-bordered text-center">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Name</th>
+            <th scope="col">Gender</th>
+            <th scope="col">Math</th>
+            <th scope="col">Physics</th>
+            <th scope="col">Chemistry</th>
+            <th scope="col">Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row">001</th>
+            <td>Tien Do</td>
+            <td><i class="fas fa-mars text-primary"></i></td>
+            <td>6</td>
+            <td>7</td>
+            <td>8</td>
+            <td>
+              <button class="btn btn-primary btn-sm">Update</button>
+              <button class="btn btn-danger btn-sm">Delete</button>
+            </td>
+          </tr>
+          <tr>
+            <th scope="row">002</th>
+            <td>Angela Phuong Trinh</td>
+            <td><i class="fas fa-venus text-info"></i></td>
+            <td>9</td>
+            <td>9</td>
+            <td>9</td>
+            <td>
+              <button class="btn btn-primary btn-sm">Update</button>
+              <button class="btn btn-danger btn-sm">Delete</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Separate Popper and Bootstrap JS -->
+    <script
+      src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"
+      integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.min.js"
+      integrity="sha384-Atwg2Pkwv9vp0ygtn1JAojH0nYbwNJLPhwyoVbhoPwBhjQPR5VtM2+xf0Uwh9KtT"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>
