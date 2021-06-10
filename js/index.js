@@ -10,11 +10,17 @@ var addStudent = function () {
 
   var newStudent = new Student(id, name, gender, math, physics, chemistry);
   studentList.push(newStudent);
+  storeData();
   renderStudentList();
 };
 
 var renderStudentList = function () {
   var content = "";
+
+  if (!studentList.length) {
+    content =
+      '<tr><td colspan="7" class="fst-italic">There are no students to display.</td></tr>';
+  }
 
   for (var i = 0; i < studentList.length; i++) {
     content += `
@@ -50,3 +56,19 @@ var getGender = function () {
 
   return "";
 };
+
+var storeData = function () {
+  localStorage.setItem("studentList", JSON.stringify(studentList));
+};
+
+var fetchData = function () {
+  var studentJSON = localStorage.getItem("studentList");
+  
+  if (studentJSON) {
+    studentList = JSON.parse(studentJSON);
+  }
+
+  renderStudentList();
+};
+
+fetchData();
