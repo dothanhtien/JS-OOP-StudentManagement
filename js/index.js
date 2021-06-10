@@ -12,6 +12,10 @@ var addStudent = function () {
   studentList.push(newStudent);
   storeData();
   renderStudentList();
+
+  // clear form
+  document.querySelector("#btnReset").click();
+};
 };
 
 var renderStudentList = function () {
