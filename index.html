@@ -50,6 +50,15 @@
       table {
         border-color: #9c27b0 !important;
       }
+      td.gender i {
+        display: none;
+      }
+      td.male i:first-child {
+        display: initial;
+      }
+      td.female i:last-child {
+        display: initial;
+      }
     </style>
   </head>
   <body>
@@ -164,32 +173,7 @@
             <th scope="col">Actions</th>
           </tr>
         </thead>
-        <tbody>
-          <tr>
-            <th scope="row">001</th>
-            <td>Tien Do</td>
-            <td><i class="fas fa-mars text-primary"></i></td>
-            <td>6</td>
-            <td>7</td>
-            <td>8</td>
-            <td>
-              <button class="btn btn-primary btn-sm">Update</button>
-              <button class="btn btn-danger btn-sm">Delete</button>
-            </td>
-          </tr>
-          <tr>
-            <th scope="row">002</th>
-            <td>Angela Phuong Trinh</td>
-            <td><i class="fas fa-venus text-info"></i></td>
-            <td>9</td>
-            <td>9</td>
-            <td>9</td>
-            <td>
-              <button class="btn btn-primary btn-sm">Update</button>
-              <button class="btn btn-danger btn-sm">Delete</button>
-            </td>
-          </tr>
-        </tbody>
+        <tbody id="studentList"></tbody>
       </table>
     </div>
 
