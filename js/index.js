@@ -24,7 +24,31 @@ var deleteStudent = function (id) {
   renderStudentList();
 };
 
-var updateStudent = function (id) {};
+var updateStudent = function () {
+  var id = document.querySelector("#txtId").value;
+  var name = document.querySelector("#txtName").value;
+  var gender = getGender();
+  var math = +document.querySelector("#txtMath").value;
+  var physics = +document.querySelector("#txtPhysics").value;
+  var chemistry = +document.querySelector("#txtChemistry").value;
+
+  var index = findIndexById(id);
+
+  studentList[index].name = name;
+  studentList[index].gender = gender;
+  studentList[index].math = math;
+  studentList[index].physics = physics;
+  studentList[index].chemistry = chemistry;
+
+  storeData();
+  renderStudentList();
+
+  document.querySelector("#btnReset").click();
+  document.querySelector("#txtId").removeAttribute("disabled");
+  document.querySelector("#btnAdd").style.display = "inline-block";
+  document.querySelector("#btnUpdate").style.display = "none";
+  document.querySelector("#btnCancel").style.display = "none";
+};
 
 var renderStudentList = function () {
   var content = "";
@@ -65,8 +89,9 @@ var renderStudentList = function () {
 
 var fillStudentIntoForm = function (id) {
   var index = findIndexById(id);
+  var studentIdElem = document.querySelector("#txtId");
 
-  document.querySelector("#txtId").value = studentList[index].id;
+  studentIdElem.value = studentList[index].id;
   document.querySelector("#txtName").value = studentList[index].name;
   studentList[index].gender === "male"
     ? (document.querySelector("#chkMale").checked = true)
@@ -75,6 +100,7 @@ var fillStudentIntoForm = function (id) {
   document.querySelector("#txtPhysics").value = studentList[index].physics;
   document.querySelector("#txtChemistry").value = studentList[index].chemistry;
 
+  studentIdElem.setAttribute("disabled", true);
   document.querySelector("#btnAdd").style.display = "none";
   document.querySelector("#btnUpdate").style.display = "inline-block";
   document.querySelector("#btnCancel").style.display = "inline-block";
@@ -82,6 +108,7 @@ var fillStudentIntoForm = function (id) {
 
 var handleCancelUpdate = function () {
   document.querySelector("#btnReset").click();
+  document.querySelector("#txtId").removeAttribute("disabled");
   document.querySelector("#btnAdd").style.display = "inline-block";
   document.querySelector("#btnUpdate").style.display = "none";
   document.querySelector("#btnCancel").style.display = "none";
