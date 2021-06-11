@@ -8,6 +8,8 @@ var addStudent = function () {
   var physics = +document.querySelector("#txtPhysics").value;
   var chemistry = +document.querySelector("#txtChemistry").value;
 
+  if (!validateForm()) return;
+
   var newStudent = new Student(id, name, gender, math, physics, chemistry);
   studentList.push(newStudent);
   storeData();
@@ -114,6 +116,25 @@ var handleCancelUpdate = function () {
   document.querySelector("#btnCancel").style.display = "none";
 };
 
+var validateForm = function () {
+  var id = document.querySelector("#txtId").value;
+  var name = document.querySelector("#txtName").value;
+  var gender = getGender();
+  var math = +document.querySelector("#txtMath").value;
+  var physics = +document.querySelector("#txtPhysics").value;
+  var chemistry = +document.querySelector("#txtChemistry").value;
+  var isValid = true;
+
+  isValid = checkRequired(id, "#errId");
+  isValid = checkRequired(name, "#errName");
+  isValid = checkGenderRequired(gender);
+  isValid = checkRequired(math, "#errMath");
+  isValid = checkRequired(physics, "#errPhysics");
+  isValid = checkRequired(chemistry, "#errChemistry");
+
+  return isValid;
+};
+
 var getGender = function () {
   var genderRadios = document.getElementsByName("genderRadios");
 
@@ -151,3 +172,40 @@ var fetchData = function () {
 };
 
 fetchData();
+
+// VALIDATIONS
+var checkRequired = function (value, selector) {
+  var elem = document.querySelector(selector);
+
+  if (typeof value === "number" && value > 0) {
+    value = String(value);
+  }
+
+  if (value.length > 0) {
+    elem.previousElementSibling.classList.remove("is-invalid");
+    elem.innerHTML = "";
+    return true;
+  }
+
+  elem.previousElementSibling.classList.add("is-invalid");
+  elem.innerHTML = "This field is required";
+  return false;
+};
+
+var checkGenderRequired = function (value) {
+  var chkMale = document.querySelector("#chkMale");
+  var chkFemale = document.querySelector("#chkFemale");
+  var errElem = document.querySelector("#errGender");
+
+  if (value.length > 0) {
+    chkMale.style.borderColor = "rgba(0,0,0,.25)";
+    chkFemale.style.borderColor = "rgba(0,0,0,.25)";
+    errElem.innerHTML = "";
+    return true;
+  }
+
+  chkMale.style.borderColor = "#dc3545";
+  chkFemale.style.borderColor = "#dc3545";
+  errElem.innerHTML = "Please select a gender";
+  return false;
+};

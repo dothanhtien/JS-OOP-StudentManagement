@@ -79,6 +79,7 @@
               id="txtId"
               placeholder="Enter ID..."
             />
+            <div id="errId" class="invalid-feedback"></div>
             <label for="txtId">Student ID</label>
           </div>
           <div class="form-floating mb-3">
@@ -88,13 +89,14 @@
               id="txtName"
               placeholder="Enter name..."
             />
+            <div id="errName" class="invalid-feedback"></div>
             <label for="txtName">Student Name</label>
           </div>
 
           <fieldset class="row mb-3">
-            <legend class="col-form-label col-sm-2 pt-0">Gender</legend>
-            <div class="col-sm-6 d-flex justify-content-evenly">
-              <div class="form-check">
+            <legend class="col-form-label col-sm-3 pt-0">Gender</legend>
+            <div class="col-sm-9">
+              <div class="form-check form-check-inline">
                 <input
                   class="form-check-input"
                   type="radio"
@@ -104,7 +106,7 @@
                 />
                 <label class="form-check-label" for="chkMale"> Male </label>
               </div>
-              <div class="form-check">
+              <div class="form-check form-check-inline">
                 <input
                   class="form-check-input"
                   type="radio"
@@ -115,6 +117,7 @@
                 <label class="form-check-label" for="chkFemale"> Female </label>
               </div>
             </div>
+            <div id="errGender" class="text-danger"></div>
           </fieldset>
 
           <div class="row">
@@ -126,6 +129,7 @@
                   id="txtMath"
                   placeholder="Enter scrore..."
                 />
+                <div id="errMath" class="invalid-feedback"></div>
                 <label for="txtMath">Math score</label>
               </div>
             </div>
@@ -137,6 +141,7 @@
                   id="txtPhysics"
                   placeholder="Enter scrore..."
                 />
+                <div id="errPhysics" class="invalid-feedback"></div>
                 <label for="txtPhysics">Physics score</label>
               </div>
             </div>
@@ -148,6 +153,7 @@
                   id="txtChemistry"
                   placeholder="Enter scrore..."
                 />
+                <div id="errChemistry" class="invalid-feedback"></div>
                 <label for="txtChemistry">Chemistry score</label>
               </div>
             </div>
