@@ -126,15 +126,22 @@ var validateForm = function () {
   var isValid = true;
 
   isValid &= checkRequired(id, "#errId") && checkLength(id, 3, 8, "#errId");
+
   isValid &=
-    checkRequired(name, "#errName") && checkLength(name, 2, 255, "#errName");
+    checkRequired(name, "#errName") &&
+    checkLength(name, 2, 255, "#errName") &&
+    checkLetters(name, "#errName");
+
   isValid = checkGenderRequired(gender);
+
   isValid &=
     checkRequired(math, "#errMath") &&
     checkValueOfNumber(math, 0, 10, "#errMath");
+
   isValid &=
     checkRequired(physics, "#errPhysics") &&
     checkValueOfNumber(physics, 0, 10, "#errPhysics");
+
   isValid &=
     checkRequired(chemistry, "#errChemistry") &&
     checkValueOfNumber(chemistry, 0, 10, "#errChemistry");
@@ -242,5 +249,21 @@ var checkValueOfNumber = function (value, min, max, selector) {
 
   elem.previousElementSibling.classList.add("is-invalid");
   elem.innerHTML = `The input value must be from ${min} to ${max}`;
+  return false;
+};
+
+var checkLetters = function (value, selector) {
+  var elem = document.querySelector(selector);
+  var pattern = /^[a-zA-Z\s]+$/g;
+  var isLetters = pattern.test(value);
+
+  if (isLetters) {
+    elem.previousElementSibling.classList.remove("is-invalid");
+    elem.innerHTML = "";
+    return true;
+  }
+
+  elem.previousElementSibling.classList.add("is-invalid");
+  elem.innerHTML = `The input value must be letters`;
   return false;
 };
