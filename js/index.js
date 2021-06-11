@@ -125,7 +125,10 @@ var validateForm = function () {
   var chemistry = document.querySelector("#txtChemistry").value;
   var isValid = true;
 
-  isValid &= checkRequired(id, "#errId") && checkLength(id, 3, 8, "#errId");
+  isValid &=
+    checkRequired(id, "#errId") &&
+    checkLength(id, 3, 8, "#errId") &&
+    checkDuplicateId();
 
   isValid &=
     checkRequired(name, "#errName") &&
@@ -237,20 +240,6 @@ var checkLength = function (value, min, max, selector) {
   return false;
 };
 
-var checkValueOfNumber = function (value, min, max, selector) {
-  var elem = document.querySelector(selector);
-
-  if (value >= min && value <= max) {
-    elem.previousElementSibling.classList.remove("is-invalid");
-    elem.innerHTML = "";
-    return true;
-  }
-
-  elem.previousElementSibling.classList.add("is-invalid");
-  elem.innerHTML = `The input value must be from ${min} to ${max}`;
-  return false;
-};
-
 var checkLetters = function (value, selector) {
   var elem = document.querySelector(selector);
   var pattern = /^[a-zA-Z\s]+$/g;
@@ -263,7 +252,7 @@ var checkLetters = function (value, selector) {
   }
 
   elem.previousElementSibling.classList.add("is-invalid");
-  elem.innerHTML = `The input value must be letters`;
+  elem.innerHTML = "The input value must be letters";
   return false;
 };
 
@@ -279,6 +268,36 @@ var checkNumber = function (value, selector) {
   }
 
   elem.previousElementSibling.classList.add("is-invalid");
-  elem.innerHTML = `The input value must be a number`;
+  elem.innerHTML = "The input value must be a number";
   return false;
+};
+
+var checkValueOfNumber = function (value, min, max, selector) {
+    var elem = document.querySelector(selector);
+  
+    if (value >= min && value <= max) {
+      elem.previousElementSibling.classList.remove("is-invalid");
+      elem.innerHTML = "";
+      return true;
+    }
+  
+    elem.previousElementSibling.classList.add("is-invalid");
+    elem.innerHTML = `The input value must be from ${min} to ${max}`;
+    return false;
+  };
+
+var checkDuplicateId = function () {
+  var id = document.querySelector("#txtId").value;
+  var idElem = document.querySelector("#errId");
+  for (var i = 0; i < studentList.length; i++) {
+    if (studentList[i].id === id) {
+      idElem.previousElementSibling.classList.add("is-invalid");
+      idElem.innerHTML = "Student ID is duplicated";
+      return false;
+    }
+  }
+
+  idElem.previousElementSibling.classList.remove("is-invalid");
+  idElem.innerHTML = "";
+  return true;
 };
