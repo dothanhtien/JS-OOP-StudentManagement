@@ -136,14 +136,17 @@ var validateForm = function () {
 
   isValid &=
     checkRequired(math, "#errMath") &&
+    checkNumber(math, "#errMath") &&
     checkValueOfNumber(+math, 0, 10, "#errMath");
 
   isValid &=
     checkRequired(physics, "#errPhysics") &&
+    checkNumber(physics, "#errPhysics") &&
     checkValueOfNumber(+physics, 0, 10, "#errPhysics");
 
   isValid &=
     checkRequired(chemistry, "#errChemistry") &&
+    checkNumber(chemistry, "#errChemistry") &&
     checkValueOfNumber(+chemistry, 0, 10, "#errChemistry");
 
   return isValid;
@@ -261,5 +264,21 @@ var checkLetters = function (value, selector) {
 
   elem.previousElementSibling.classList.add("is-invalid");
   elem.innerHTML = `The input value must be letters`;
+  return false;
+};
+
+var checkNumber = function (value, selector) {
+  var elem = document.querySelector(selector);
+  var pattern = /^[0-9\-]+$/g;
+  var isLetters = pattern.test(value);
+
+  if (isLetters) {
+    elem.previousElementSibling.classList.remove("is-invalid");
+    elem.innerHTML = "";
+    return true;
+  }
+
+  elem.previousElementSibling.classList.add("is-invalid");
+  elem.innerHTML = `The input value must be a number`;
   return false;
 };
