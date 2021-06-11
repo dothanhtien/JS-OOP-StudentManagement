@@ -24,6 +24,8 @@ var deleteStudent = function (id) {
   renderStudentList();
 };
 
+var updateStudent = function (id) {};
+
 var renderStudentList = function () {
   var content = "";
 
@@ -45,7 +47,10 @@ var renderStudentList = function () {
         <td>${studentList[i].physics}</td>
         <td>${studentList[i].chemistry}</td>
         <td>
-          <button class="btn btn-primary btn-sm">Update</button>
+          <button 
+            class="btn btn-primary btn-sm"
+            onclick="fillStudentIntoForm('${studentList[i].id}')"
+          >Update</button>
           <button 
             class="btn btn-danger btn-sm" 
             onclick="deleteStudent('${studentList[i].id}')"
@@ -56,6 +61,23 @@ var renderStudentList = function () {
   }
 
   document.querySelector("#studentList").innerHTML = content;
+};
+
+var fillStudentIntoForm = function (id) {
+  var index = findIndexById(id);
+
+  document.querySelector("#txtId").value = studentList[index].id;
+  document.querySelector("#txtName").value = studentList[index].name;
+  studentList[index].gender === "male"
+    ? (document.querySelector("#chkMale").checked = true)
+    : (document.querySelector("#chkFemale").checked = true);
+  document.querySelector("#txtMath").value = studentList[index].math;
+  document.querySelector("#txtPhysics").value = studentList[index].physics;
+  document.querySelector("#txtChemistry").value = studentList[index].chemistry;
+
+  document.querySelector("#btnAdd").style.display = "none";
+  document.querySelector("#btnUpdate").style.display = "inline-block";
+  document.querySelector("#btnCancel").style.display = "inline-block";
 };
 
 var getGender = function () {
@@ -86,7 +108,7 @@ var storeData = function () {
 
 var fetchData = function () {
   var studentJSON = localStorage.getItem("studentList");
-  
+
   if (studentJSON) {
     studentList = JSON.parse(studentJSON);
   }

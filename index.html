@@ -43,7 +43,11 @@
         background-color: #9c27b0 !important;
         border-color: #9c27b0 !important;
       }
-      #btnAdd,
+      #btnUpdate,
+      #btnCancel,
+      #btnReset {
+        display: none;
+      }
       hr {
         background-color: #9c27b0;
       }
@@ -152,12 +156,20 @@
             <button
               id="btnAdd"
               type="button"
-              class="btn text-white"
+              class="btn btn-primary"
               onclick="addStudent()"
             >
               Add student
             </button>
-            <button type="reset" id="btnReset" class="d-none">Reset</button>
+            <button id="btnUpdate" type="button" class="btn btn-primary">
+              Confirm update
+            </button>
+            <button id="btnCancel" type="button" class="btn btn-secondary">
+              Cancel
+            </button>
+            <button type="reset" id="btnReset" class="btn btn-secondary">
+              Reset
+            </button>
           </div>
         </div>
       </form>
