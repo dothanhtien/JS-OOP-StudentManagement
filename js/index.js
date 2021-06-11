@@ -129,9 +129,15 @@ var validateForm = function () {
   isValid &=
     checkRequired(name, "#errName") && checkLength(name, 2, 255, "#errName");
   isValid = checkGenderRequired(gender);
-  isValid = checkRequired(math, "#errMath");
-  isValid = checkRequired(physics, "#errPhysics");
-  isValid = checkRequired(chemistry, "#errChemistry");
+  isValid &=
+    checkRequired(math, "#errMath") &&
+    checkValueOfNumber(math, 0, 10, "#errMath");
+  isValid &=
+    checkRequired(physics, "#errPhysics") &&
+    checkValueOfNumber(physics, 0, 10, "#errPhysics");
+  isValid &=
+    checkRequired(chemistry, "#errChemistry") &&
+    checkValueOfNumber(chemistry, 0, 10, "#errChemistry");
 
   return isValid;
 };
@@ -222,5 +228,19 @@ var checkLength = function (value, min, max, selector) {
 
   elem.previousElementSibling.classList.add("is-invalid");
   elem.innerHTML = `The input value must be from ${min} to ${max} characters`;
+  return false;
+};
+
+var checkValueOfNumber = function (value, min, max, selector) {
+  var elem = document.querySelector(selector);
+
+  if (value >= min && value <= max) {
+    elem.previousElementSibling.classList.remove("is-invalid");
+    elem.innerHTML = "";
+    return true;
+  }
+
+  elem.previousElementSibling.classList.add("is-invalid");
+  elem.innerHTML = `The input value must be from ${min} to ${max}`;
   return false;
 };
