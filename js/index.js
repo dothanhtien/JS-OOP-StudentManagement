@@ -125,8 +125,9 @@ var validateForm = function () {
   var chemistry = +document.querySelector("#txtChemistry").value;
   var isValid = true;
 
-  isValid = checkRequired(id, "#errId");
-  isValid = checkRequired(name, "#errName");
+  isValid &= checkRequired(id, "#errId") && checkLength(id, 3, 8, "#errId");
+  isValid &=
+    checkRequired(name, "#errName") && checkLength(name, 2, 255, "#errName");
   isValid = checkGenderRequired(gender);
   isValid = checkRequired(math, "#errMath");
   isValid = checkRequired(physics, "#errPhysics");
@@ -207,5 +208,19 @@ var checkGenderRequired = function (value) {
   chkMale.style.borderColor = "#dc3545";
   chkFemale.style.borderColor = "#dc3545";
   errElem.innerHTML = "Please select a gender";
+  return false;
+};
+
+var checkLength = function (value, min, max, selector) {
+  var elem = document.querySelector(selector);
+
+  if (value.length >= min && value.length <= max) {
+    elem.previousElementSibling.classList.remove("is-invalid");
+    elem.innerHTML = "";
+    return true;
+  }
+
+  elem.previousElementSibling.classList.add("is-invalid");
+  elem.innerHTML = `The input value must be from ${min} to ${max} characters`;
   return false;
 };
