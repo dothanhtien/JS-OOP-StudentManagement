@@ -80,6 +80,13 @@ var fillStudentIntoForm = function (id) {
   document.querySelector("#btnCancel").style.display = "inline-block";
 };
 
+var handleCancelUpdate = function () {
+  document.querySelector("#btnReset").click();
+  document.querySelector("#btnAdd").style.display = "inline-block";
+  document.querySelector("#btnUpdate").style.display = "none";
+  document.querySelector("#btnCancel").style.display = "none";
+};
+
 var getGender = function () {
   var genderRadios = document.getElementsByName("genderRadios");
 
