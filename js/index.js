@@ -120,9 +120,9 @@ var validateForm = function () {
   var id = document.querySelector("#txtId").value;
   var name = document.querySelector("#txtName").value;
   var gender = getGender();
-  var math = +document.querySelector("#txtMath").value;
-  var physics = +document.querySelector("#txtPhysics").value;
-  var chemistry = +document.querySelector("#txtChemistry").value;
+  var math = document.querySelector("#txtMath").value;
+  var physics = document.querySelector("#txtPhysics").value;
+  var chemistry = document.querySelector("#txtChemistry").value;
   var isValid = true;
 
   isValid &= checkRequired(id, "#errId") && checkLength(id, 3, 8, "#errId");
@@ -136,15 +136,15 @@ var validateForm = function () {
 
   isValid &=
     checkRequired(math, "#errMath") &&
-    checkValueOfNumber(math, 0, 10, "#errMath");
+    checkValueOfNumber(+math, 0, 10, "#errMath");
 
   isValid &=
     checkRequired(physics, "#errPhysics") &&
-    checkValueOfNumber(physics, 0, 10, "#errPhysics");
+    checkValueOfNumber(+physics, 0, 10, "#errPhysics");
 
   isValid &=
     checkRequired(chemistry, "#errChemistry") &&
-    checkValueOfNumber(chemistry, 0, 10, "#errChemistry");
+    checkValueOfNumber(+chemistry, 0, 10, "#errChemistry");
 
   return isValid;
 };
@@ -190,10 +190,6 @@ fetchData();
 // VALIDATIONS
 var checkRequired = function (value, selector) {
   var elem = document.querySelector(selector);
-
-  if (typeof value === "number" && value > 0) {
-    value = String(value);
-  }
 
   if (value.length > 0) {
     elem.previousElementSibling.classList.remove("is-invalid");
